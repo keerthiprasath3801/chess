@@ -1,0 +1,23 @@
+# Node & Build artifacts
+node_modules/
+dist/
+build/
+.vercel
+.netlify
+scratch/
+frontend/scratch/
+
+# Python
+__pycache__/
+*.pyc
+.env
+.env*
+.venv
+env/
+venv/
+
+# Logs & System
+*.log
+.DS_Store
+Thumbs.db
+
