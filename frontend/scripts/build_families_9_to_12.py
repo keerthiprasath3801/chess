@@ -1,0 +1,203 @@
+import json
+import os
+
+output_dir = os.path.join(os.path.dirname(__file__), 'openings_data')
+os.makedirs(output_dir, exist_ok=True)
+
+# ── 9. GRÜNFELD DEFENSE (18 variations) ──────────────────────────────────────
+grunfeld = {
+  "id": "grunfeld",
+  "name": "Grünfeld Defense",
+  "ecoRange": "D70–D99",
+  "category": "Hypermodern & Dynamic Asymmetric Defenses (1.d4 Nf6 2.c4 g6 3.Nc3 d5)",
+  "summary": "Ernst Grünfeld's revolutionary hypermodern creation favored by Garry Kasparov, Bobby Fischer, and Peter Svidler. Black invites White to establish a massive d4/e4 pawn center, then ruthlessly dismantles it from afar with ...Bg7, ...c5, and ...Nc6.",
+  "keyConcepts": ["Conceding large center to attack it", "Exchange on c3 & attacking d4/c3 base", "Fianchetto monster on g7", "Thematic ...c5 pawn rupture and ...Bg4 pin"],
+  "famousPlayers": ["Garry Kasparov", "Bobby Fischer", "Peter Svidler", "Maxime Vachier-Lagrave", "Ernst Grünfeld"],
+  "subVariations": [
+    {
+      "id": "gru-exchange-modern-8-rb1",
+      "name": "Grünfeld Exchange: Modern 8.Rb1 System",
+      "eco": "D85",
+      "moves": ["d4", "Nf6", "c4", "g6", "Nc3", "d5", "cxd5", "Nxd5", "e4", "Nxc3", "bxc3", "Bg7", "Nf3", "c5", "Rb1", "O-O", "Be2", "Nc6", "d5", "Ne5", "Nxe5", "Bxe5", "Qd2", "e6", "f4", "Bc7", "O-O", "exd5", "exd5", "Ba5"],
+      "description": "The absolute pinnacle of modern Grünfeld theory. White activates the rook along the b-file with 8.Rb1, while Black targets the d5/c3 pawns with ...Bc7 and ...Ba5.",
+      "whitePlan": "Push f4 and d5 to advance passed pawns, attack down the b-file.",
+      "blackPlan": "Pin c3 with ...Ba5, blockade d5, apply pressure on White's pawn center.",
+      "keyThemes": ["Modern 8.Rb1 Attack", "Passed d5 Pawn Battle", "Pin on c3 (...Ba5)", "Dynamic Pieces vs Space"]
+    },
+    {
+      "id": "gru-exchange-classical-7-bc4",
+      "name": "Grünfeld Exchange: Classical 7.Bc4",
+      "eco": "D86",
+      "moves": ["d4", "Nf6", "c4", "g6", "Nc3", "d5", "cxd5", "Nxd5", "e4", "Nxc3", "bxc3", "Bg7", "Bc4", "c5", "Ne2", "Nc6", "Be3", "O-O", "O-O", "Bg4", "f3", "Na5", "Bd3", "cxd4", "cxd4", "Be6"],
+      "description": "The legendary battleground of the Kasparov-Karpov World Championship matches. White builds a massive center with Bc4 and Be3, while Black counterstrikes with ...Bg4 and ...Na5.",
+      "whitePlan": "Maintain dominating d4/e4 pawn center, launch kingside attack with f4-f5.",
+      "blackPlan": "Maneuver knight via Na5-c4, trade on d4, exploit the dark-square diagonals.",
+      "keyThemes": ["Kasparov-Karpov Classical", "Massive d4/e4 Center", "Knight Outpost on c4", "Sharp Tactical Clash"]
+    },
+    {
+      "id": "gru-russian-5-qb3",
+      "name": "Grünfeld: Russian System (4.Nf3 Bg7 5.Qb3)",
+      "eco": "D96",
+      "moves": ["d4", "Nf6", "c4", "g6", "Nc3", "d5", "Nf3", "Bg7", "Qb3", "dxc4", "Qxc4", "O-O", "e4", "a6", "Be2", "b5", "Qb3", "c5", "dxc5", "Bb7", "e5", "Nfd7", "Be3", "e6"],
+      "description": "Mikhail Botvinnik and Vasily Smyslov's weapon: 5.Qb3 forces 5...dxc4, regaining the pawn with the queen and building a central spatial grip.",
+      "whitePlan": "Maintain queen on b3/a3, use e5 space wedge, exploit Black's queenside pawns.",
+      "blackPlan": "Expand on queenside with ...a6 and ...b5, break with ...c5, target c5/e5 pawns.",
+      "keyThemes": ["Russian 5.Qb3 System", "Queenside ...b5 Roll", "Central ...c5 Break", "Targeting e5 Pawn"]
+    },
+    {
+      "id": "gru-russian-5-qa4",
+      "name": "Grünfeld: Russian System (5.Qa4+)",
+      "eco": "D97",
+      "moves": ["d4", "Nf6", "c4", "g6", "Nc3", "d5", "Nf3", "Bg7", "Qa4+", "Bd7", "Qb3", "dxc4", "Qxc4", "O-O", "e4", "Bg4", "Be3", "Nfd7", "Rd1", "Nc6", "Be2", "Nb6"],
+      "description": "White delivers a check on a4 to displace Black's bishop to d7 before recapturing on c4.",
+      "whitePlan": "Control center with Rd1 and e4, maintain queen safety on c4.",
+      "blackPlan": "Pin with ...Bg4, maneuver knight via Nfd7-b6, attack d4.",
+      "keyThemes": ["Qa4+ Check Disruption", "Pin on f3 Knight", "Knight Outpost on b6", "Central Pressure"]
+    },
+    {
+      "id": "gru-4-bf4",
+      "name": "Grünfeld: 4.Bf4 Main Line",
+      "eco": "D82",
+      "moves": ["d4", "Nf6", "c4", "g6", "Nc3", "d5", "Bf4", "Bg7", "e3", "O-O", "Rc1", "c5", "dxc5", "Be6", "Nf3", "Nc6", "Ng5", "Bg4", "f3", "e5", "Bg3", "d4"],
+      "description": "High-voltage attacking system where White plays 4.Bf4 to target c7, met by an explosive ...d4 central counter-sacrifice by Black.",
+      "whitePlan": "Pressure c7 and d5, use active dark bishop on f4/g3.",
+      "blackPlan": "Advance ...d4! wedge, open lines for active minor pieces, exploit f3 weakening.",
+      "keyThemes": ["4.Bf4 Target on c7", "Explosive ...d4 Sac", "Fierce Central Clashes", "Open Tactical Lines"]
+    },
+    {
+      "id": "gru-4-bf4-c5",
+      "name": "Grünfeld: 4.Bf4 with 4...c5 (Simagin)",
+      "eco": "D82",
+      "moves": ["d4", "Nf6", "c4", "g6", "Nc3", "d5", "Bf4", "Bg7", "e3", "c5", "dxc5", "Qa5", "cxd5", "Nxd5", "Qxd5", "Bxc3+", "bxc3", "Qxc3+", "Ke2", "Qxa1", "Be5", "Qb1", "Bxh8", "Be6"],
+      "description": "Tactical madness with multiple piece and rook sacrifices: Black wins a rook on a1 while White wins the rook on h8.",
+      "whitePlan": "Survive the queen checks, consolidate the material advantage.",
+      "blackPlan": "Attack White's exposed king on e2 with ...Be6 and ...Nc6, deliver mate.",
+      "keyThemes": ["Mutual Rook Sacrifices", "King Exposed on e2", "Extreme Tactical Fireworks", "Grandmaster Preparation"]
+    },
+    {
+      "id": "gru-fianchetto",
+      "name": "Grünfeld: Fianchetto System (3.g3)",
+      "eco": "D71",
+      "moves": ["d4", "Nf6", "c4", "g6", "g3", "d5", "Bg2", "Bg7", "cxd5", "Nxd5", "Nf3", "Nb6", "Nc3", "Nc6", "e3", "O-O", "O-O", "Re8", "d5", "Na5", "Nd4", "Bd7"],
+      "description": "Ultra-solid positional choice for White. By fianchettoing on g2, White blunts Black's g7 monster bishop.",
+      "whitePlan": "Control d5 outpost, clamp Black's pieces, grind in the endgame.",
+      "blackPlan": "Maneuver knight to a5/b6, break with ...c6 or ...e5, pressure d5.",
+      "keyThemes": ["Fianchetto Neutralization", "Knight Outpost on b6/a5", "Pressure on d5 Wedge", "Prophylactic Positional Play"]
+    },
+    {
+      "id": "gru-modern-5-bd2",
+      "name": "Grünfeld: Modern 5.Bd2 System",
+      "eco": "D80",
+      "moves": ["d4", "Nf6", "c4", "g6", "Nc3", "d5", "Nf3", "Bg7", "Bd2", "O-O", "Rc1", "dxc4", "e4", "Bg4", "Be3", "Nfd7", "Bxc4", "Nb6", "Be2", "Nc6", "d5", "Bxf3", "gxf3", "Na5"],
+      "description": "White plays 5.Bd2 to avoid doubled pawns on c3 and retain smooth piece development.",
+      "whitePlan": "Advance d5, utilize open g-file with Rg1, attack down the center.",
+      "blackPlan": "Trade on f3, anchor knight on a5/c4, pressure White's center.",
+      "keyThemes": ["5.Bd2 Prophylaxis", "Avoiding Doubled Pawns", "Knight Outpost on a5", "Open g-file Tension"]
+    },
+    {
+      "id": "gru-stockholm-4-bg5",
+      "name": "Grünfeld: 4.Bg5 / Stockholm Variation",
+      "eco": "D80",
+      "moves": ["d4", "Nf6", "c4", "g6", "Nc3", "d5", "Bg5", "Ne4", "Bh4", "Nxc3", "bxc3", "dxc4", "e3", "Be6", "Qb1", "b6", "Nf3", "Bg7", "Be2", "O-O", "O-O", "c6"],
+      "description": "White pins the knight with 4.Bg5, provoking 4...Ne4, followed by queenside pawn tension after 7.Qb1.",
+      "whitePlan": "Regain c4 with Bxc4, put pressure on b6, control center.",
+      "blackPlan": "Defend c4 pawn with ...Be6 and ...b6, coordinate smoothly.",
+      "keyThemes": ["4.Bg5 Challenge", "Ne4 Outpost Jump", "Qb1 Queenside Pressure", "Solid Pawn Defense"]
+    },
+    {
+      "id": "gru-flohr-4-e3",
+      "name": "Grünfeld: Flohr / 4.e3 System",
+      "eco": "D80",
+      "moves": ["d4", "Nf6", "c4", "g6", "Nc3", "d5", "e3", "Bg7", "Nf3", "O-O", "Be2", "c5", "dxc5", "dxc4", "Qxd8", "Rxd8", "Bxc4", "Nbd7", "c6", "bxc6", "O-O", "Nb6"],
+      "description": "Salo Flohr's calm positional setup: White plays 4.e3, trading queens early into a strategic endgame.",
+      "whitePlan": "Exploit Black's doubled c-pawns, utilize bishop on c4.",
+      "blackPlan": "Maneuver knight to b6/d5, utilize open d-file and bishop pair.",
+      "keyThemes": ["Flohr 4.e3 Simplicity", "Early Queen Trade", "Knight to b6 Outpost", "Strategic Endgame Grind"]
+    },
+    {
+      "id": "gru-prins-5-na4",
+      "name": "Grünfeld: Prins Variation (5.Na4)",
+      "eco": "D90",
+      "moves": ["d4", "Nf6", "c4", "g6", "Nc3", "d5", "Nf3", "Bg7", "cxd5", "Nxd5", "Na4", "O-O", "e4", "Nb6", "Be3", "Bg4", "Be2", "Nc6", "d5", "Nxa4", "Qxa4", "Bxf3", "Bxf3", "Ne5"],
+      "description": "Lodewijk Prins's knight move to a4, controlling c5 and preparing e4 dominance.",
+      "whitePlan": "Maintain central spatial advantage with d5/e4, use bishop pair.",
+      "blackPlan": "Anchor knight on e5, trade on a4, pressure White's queenside.",
+      "keyThemes": ["5.Na4 Knight Maneuver", "Control of c5 Square", "Knight Outpost on e5", "Dynamic Exchanges"]
+    },
+    {
+      "id": "neo-grunfeld-3-f3",
+      "name": "Neo-Grünfeld: 3.f3 System (Alekhine)",
+      "eco": "D70",
+      "moves": ["d4", "Nf6", "c4", "g6", "f3", "d5", "cxd5", "Nxd5", "e4", "Nb6", "Nc3", "Bg7", "Be3", "O-O", "Qd2", "Nc6", "O-O-O", "f5", "e5", "Nb4", "Bh6", "Be6"],
+      "description": "Alexander Alekhine's aggressive system: White reinforces e4 with f3 and castles long to launch an attack, while Black breaks with ...f5.",
+      "whitePlan": "Trade dark bishops with Bh6, push h4-h5, mate the black king.",
+      "blackPlan": "Counterstrike with ...f5 and ...Nb4, attack White's king on c1.",
+      "keyThemes": ["Neo-Grünfeld 3.f3 Attack", "Opposite Castling Mating Race", "Central ...f5 Counter-Break", "Knight Outpost on b4"]
+    },
+    {
+      "id": "neo-grunfeld-3-g3",
+      "name": "Neo-Grünfeld: 3.g3 System",
+      "eco": "D72",
+      "moves": ["d4", "Nf6", "c4", "g6", "g3", "d5", "cxd5", "Nxd5", "Bg2", "Bg7", "e4", "Nb6", "Ne2", "c5", "d5", "e6", "O-O", "O-O", "Nec3", "Na6", "a4", "Nb4"],
+      "description": "White combines early g3/Bg2 with e4, establishing a solid d5 wedge.",
+      "whitePlan": "Maintain d5 pawn wedge, restrict Black's counterplay, expand on queenside.",
+      "blackPlan": "Undermine with ...e6 and ...c5, anchor knight on b4.",
+      "keyThemes": ["Neo-Grünfeld 3.g3", "Solid d5 Wedge", "Knight Outpost on b4", "Central Tension"]
+    },
+    {
+      "id": "gru-hungarian",
+      "name": "Grünfeld: Hungarian Variation (4.Nf3 Bg7 5.e3 O-O 6.Be2)",
+      "eco": "D94",
+      "moves": ["d4", "Nf6", "c4", "g6", "Nc3", "d5", "Nf3", "Bg7", "e3", "O-O", "Be2", "c5", "O-O", "cxd4", "exd4", "Nc6", "h3", "dxc4", "Bxc4", "b6", "Re1", "Bb7"],
+      "description": "Harmonious classical treatment leading to IQP structures where Black easily develops all minor pieces.",
+      "whitePlan": "Use active minor pieces on c4/e1, attack kingside.",
+      "blackPlan": "Fianchetto on b7, blockade d5 square, attack the d4 IQP.",
+      "keyThemes": ["Hungarian Setup", "IQP Classical Struggle", "Fianchetto on b7", "Blockade on d5"]
+    },
+    {
+      "id": "gru-burille",
+      "name": "Grünfeld: Burille Variation (4.cxd5 Nxd5 5.e4)",
+      "eco": "D85",
+      "moves": ["d4", "Nf6", "c4", "g6", "Nc3", "d5", "cxd5", "Nxd5", "e4", "Nxc3", "bxc3", "Bg7", "Bc4", "O-O", "Ne2", "c5", "O-O", "Nc6", "Be3", "Qc7", "Rc1", "Rd8", "Qd2", "e6"],
+      "description": "Black delays ...Bg4 and develops the queen to c7, maintaining flexible pressure along the c- and d-files.",
+      "whitePlan": "Maintain d4/e4 pawn center, prepare f4 kingside attack.",
+      "blackPlan": "Pressure c-file with ...Qc7 and d-file with ...Rd8, undermine with ...e6.",
+      "keyThemes": ["Burille ...Qc7 Setup", "Rook on d8 Pressure", "Solid Center Defense", "Flexible Middlegame"]
+    },
+    {
+      "id": "gru-seville",
+      "name": "Grünfeld: Seville Variation (7.Bc4 c5 8.Ne2 Nc6 9.Be3 O-O 10.O-O Bg4 11.f3 Na5 12.Bxf7+)",
+      "eco": "D88",
+      "moves": ["d4", "Nf6", "c4", "g6", "Nc3", "d5", "cxd5", "Nxd5", "e4", "Nxc3", "bxc3", "Bg7", "Bc4", "c5", "Ne2", "Nc6", "Be3", "O-O", "O-O", "Bg4", "f3", "Na5", "Bxf7+", "Rxf7", "fxg4", "Rxf1+", "Kxf1", "Qd6", "e5", "Qd5"],
+      "description": "Anatoly Karpov's dramatic bishop sacrifice on f7 against Garry Kasparov in the 1987 Seville World Championship Match.",
+      "whitePlan": "Maintain extra pawns, survive Black's centralized queen assault.",
+      "blackPlan": "Dominate central dark squares with ...Qd5, activate knight and bishop.",
+      "keyThemes": ["Karpov Bxf7+ Sacrifice", "Seville 1987 Historic Battle", "Central Queen Dominance (...Qd5)", "Dark-Square Compensation"]
+    },
+    {
+      "id": "gru-gambit-4-cxd5",
+      "name": "Grünfeld Gambit (4.cxd5 c6)",
+      "eco": "D80",
+      "moves": ["d4", "Nf6", "c4", "g6", "Nc3", "d5", "cxd5", "c6", "dxc6", "Nxc6", "Nf3", "Bg7", "e3", "O-O", "Be2", "e5", "d5", "e4", "dxc6", "exf3", "Bxf3", "bxc6"],
+      "description": "Black sacrifices a pawn with 4...c6 for open files and blazing piece activity.",
+      "whitePlan": "Consolidate extra pawn, trade queens, simplify into winning endgame.",
+      "blackPlan": "Create tactical threats with ...e4, dominate open b- and d-files.",
+      "keyThemes": ["Gambit Pawn Sacrifice", "Open Files for Pieces", "Tactical ...e4 Strike", "Endgame Compensation"]
+    },
+    {
+      "id": "gru-4-nf3-bg7-5-e3",
+      "name": "Grünfeld: 5.e3 Classical Setup",
+      "eco": "D94",
+      "moves": ["d4", "Nf6", "c4", "g6", "Nc3", "d5", "Nf3", "Bg7", "e3", "O-O", "b4", "c6", "Bb2", "Bg4", "h3", "Bxf3", "Qxf3", "e6", "Bd3", "Nbd7", "O-O", "Qe7"],
+      "description": "White plays b4 to clamp the queenside and avoids sharp theoretical main lines.",
+      "whitePlan": "Expand on queenside with b4/a4, maintain bishop pair on d3/b2.",
+      "blackPlan": "Trade on f3, coordinate with ...Nbd7 and ...e6, break with ...e5.",
+      "keyThemes": ["Queenside b4 Clamp", "Solid e3/d4 Center", "Trade on f3", "Central ...e5 Preparation"]
+    }
+  ]
+}
+
+with open(os.path.join(output_dir, 'grunfeld.json'), 'w') as f:
+    json.dump(grunfeld, f, indent=2)
+
+print("Saved Grünfeld family (18 variations).")

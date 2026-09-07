@@ -342,7 +342,7 @@ export const OpeningsExplorer: React.FC<OpeningsExplorerProps> = ({
                   Openings Master Database
                 </h1>
                 <span className="text-[10px] bg-teal-500/15 text-teal-300 border border-teal-500/30 px-2 py-0.5 rounded-full font-mono font-bold">
-                  1,020+ GM Games & Explanations
+                  {allSubVariations.length}+ Deep Variations & {GM_OPENINGS_GAMES.length}+ GM Games
                 </span>
               </div>
               <p className="text-[10px] text-gray-400 font-mono mt-0.5 hidden xs:block">
@@ -624,7 +624,7 @@ export const OpeningsExplorer: React.FC<OpeningsExplorerProps> = ({
                   }`}
                 >
                   <ListTree className="w-3.5 h-3.5" />
-                  <span>110+ Sub-Variations</span>
+                  <span>{allSubVariations.length}+ Deep Opening Lines</span>
                 </button>
                 <button
                   onClick={() => setActiveExplorerTab('gm-games')}
@@ -635,12 +635,12 @@ export const OpeningsExplorer: React.FC<OpeningsExplorerProps> = ({
                   }`}
                 >
                   <Trophy className="w-3.5 h-3.5" />
-                  <span>1,020 GM Master Games</span>
+                  <span>{GM_OPENINGS_GAMES.length}+ GM Master Games</span>
                 </button>
               </div>
 
               <span className="text-[10px] font-mono text-gray-400 px-2 py-0.5 bg-white/5 rounded-lg border border-white/5 hidden xl:inline">
-                {activeExplorerTab === 'moves' ? `${explorerData?.moves.length || 0} candidate moves` : activeExplorerTab === 'variations' ? `${filteredSubVariations.length} sub-variations` : `${filteredGMGames.length} GM games`}
+                {activeExplorerTab === 'moves' ? `${explorerData?.moves.length || 0} candidate moves` : activeExplorerTab === 'variations' ? `${filteredSubVariations.length} deep lines` : `${filteredGMGames.length} GM games`}
               </span>
             </div>
 
